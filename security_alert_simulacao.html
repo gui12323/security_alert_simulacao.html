@@ -1,1 +1,30 @@
-
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SECURITY ALERT</title><style>*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;background:#020202;color:#eee;font-family:Arial;overflow:hidden}body{display:flex;align-items:center;justify-content:center}.card{width:min(720px,92vw);padding:28px;background:#090909;border:1px solid #333;box-shadow:0 0 35px #000;border-radius:12px}h1{color:#f33}button{background:#b00000;color:#fff;border:0;border-radius:7px;padding:14px 22px;font-weight:bold;font-size:16px}.bar{height:9px;background:#222;margin:20px 0}.fill{height:100%;width:0;background:#e21b1b}#stage{display:none;width:100vw;height:100vh;background:#050505}#alerts{padding:5vh 6vw;height:100%;overflow:hidden}.alert{font:bold 20px monospace;color:#f33;margin:10px 0;text-shadow:0 0 8px #f00}.glitch{animation:shake .055s infinite;filter:contrast(1.8) saturate(2)}@keyframes shake{0%{transform:translate(0)}25%{transform:translate(8px,-3px)}50%{transform:translate(-7px,4px)}75%{transform:translate(3px,2px)}100%{transform:translate(-2px,-4px)}}#black{display:none;position:fixed;inset:0;background:#000}</style></head><body><div class="card" id="intro"><h1>SECURITY ALERT</h1><p>Verificação de segurança necessária.</p><button id="start">INICIAR VERIFICAÇÃO</button><div class="bar"><div class="fill" id="fill"></div></div></div><div id="stage"><div id="alerts"></div></div><div id="black"></div><script>
+const m=["⚠️ VOCÊ ESTÁ SENDO HACKEADO","⚠️ ACESSO NÃO AUTORIZADO DETECTADO","⚠️ CONTA BANCÁRIA: ATIVIDADE SUSPEITA DETECTADA","⚠️ DADOS DA SESSÃO SENDO ANALISADOS","⚠️ TENTATIVA DE TRANSFERÊNCIA DETECTADA","⚠️ ERRO: SISTEMA COMPROMETIDO","⚠️ SALDO BANCÁRIO SENDO TRANSFERIDO","⚠️ DESTINATÁRIO: GUILHERME LUCAS — CONTA DE TESTE","⚠️ PROCESSAMENTO DA TRANSFERÊNCIA INICIADO","⚠️ CANCELAMENTO INDISPONÍVEL","🚨 ALERTA CRÍTICO: ACESSO EXTERNO DETECTADO","🚨 CONEXÃO NÃO RECONHECIDA","🚨 AUTENTICAÇÃO COMPROMETIDA","🚨 ATIVIDADE INCOMUM DETECTADA","🚨 DADOS FINANCEIROS EM ANÁLISE","🚨 OPERAÇÃO FINANCEIRA NÃO RECONHECIDA","🚨 SISTEMA DE SEGURANÇA FALHOU","🚨 TENTATIVA DE CONTROLE DA SESSÃO","🚨 PROTEÇÃO DA CONTA DESATIVADA","🚨 TRANSFERÊNCIA EM ANDAMENTO — 23%","🚨 TRANSFERÊNCIA EM ANDAMENTO — 47%","🚨 TRANSFERÊNCIA EM ANDAMENTO — 71%","🚨 TRANSFERÊNCIA EM ANDAMENTO — 89%","🚨 PROCESSAMENTO FINANCEIRO QUASE CONCLUÍDO","🚨 DADOS DA CONTA SENDO VERIFICADOS","🚨 NOVA SESSÃO REMOTA DETECTADA","🚨 BLOQUEIO AUTOMÁTICO FALHOU","🚨 SISTEMA INSTÁVEL — NÃO FECHE ESTA JANELA","🚨 ÚLTIMA TENTATIVA DE RECUPERAÇÃO...","🔴 ERRO CRÍTICO — CONEXÃO COM O SISTEMA PERDIDA","⚠️ CPF SENDO ANALISADO","⚠️ DOCUMENTO SENDO USADO PARA VERIFICAÇÃO DE IDENTIDADE","🚨 VERIFICAÇÃO DE CPF EM ANDAMENTO...","🚨 DADOS DE IDENTIDADE SENDO PROCESSADOS"];
+let ctx;function beep(f=440,d=.08){try{ctx??=new(window.AudioContext||window.webkitAudioContext)();let o=ctx.createOscillator(),g=ctx.createGain();o.type="square";o.frequency.value=f;g.gain.value=.035;o.connect(g).connect(ctx.destination);o.start();o.stop(ctx.currentTime+d)}catch(e){}}
+start.onclick=()=>{intro.style.display="none";stage.style.display="block";ctx=new(window.AudioContext||window.webkitAudioContext)();let t=performance.now(),i=0,D=27000;let x=setInterval(()=>{let q=Math.min((performance.now()-t)/D,1);fill.style.width=q*100+"%";if(i<m.length&&q>i/(m.length+2)){let d=document.createElement("div");d.className="alert";d.textContent=m[i++];alerts.append(d);alerts.scrollTop=99999;beep(180+i*17)}if(q>.70)stage.classList.add("glitch");
+if(q>.88){
+  stage.style.transform="skew("+(Math.random()*6-3)+"deg) scale("+(1+Math.random()*.04)+")";
+  stage.style.filter="contrast(2.2) brightness("+(0.7+Math.random()*1.2)+") saturate(3)";
+  if(Math.random()<.35) document.body.style.transform="translate("+(Math.random()*18-9)+"px,"+(Math.random()*12-6)+"px)";
+}
+if(q>=1){
+  clearInterval(x);
+  stage.style.filter="contrast(4) brightness(2) saturate(4)";
+  stage.style.transform="scale(1.08) skew(8deg)";
+  const stop=performance.now()+1100;
+  const loud=setInterval(()=>{
+    if(performance.now()>stop){clearInterval(loud);return}
+    beep(90+Math.random()*900,.12);
+    beep(45+Math.random()*180,.18);
+  },55);
+  setTimeout(()=>{
+    stage.style.filter="invert(1) contrast(5)";
+    stage.style.transform="translate(12px,-8px) scale(1.15) skew(-12deg)";
+  },350);
+  setTimeout(()=>{
+    stage.style.display="none";
+    document.body.style.transform="";
+    black.style.display="block";
+  },1250);
+}},120)};
+</script></body></html>
